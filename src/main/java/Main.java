@@ -81,6 +81,10 @@ public class Main {
     float counterDegreeKakiBrown = 30f;
     float counterDegreeGelengBrown = 45f;
 
+    //tanaman kecil
+    private ArrayList<Object> tanamanKecil
+            = new ArrayList<>();
+
     // Enviroment
     private ArrayList<Object> objectsAwan
             = new ArrayList<>();
@@ -2068,6 +2072,39 @@ public class Main {
         ));
         objectsAwan.get(6).translateObject(4.2f,1.3f,0.4f);
         objectsAwan.get(6).scaleObject(0.2f,0.2f,0.4f);
+
+        //tanaman kecil
+        tanamanKecil.add(new Cylinder(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(1f, 1f, 0f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                0.065f,
+                0.25f,
+                0.065f,
+                36,
+                18
+        ));
+        tanamanKecil.get(0).translateObject(0.5f, 0f,0.3f);
+
+        tanamanKecil.add(new Ellipsoid(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0f, 1f, 0f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                0.03f,
+                0.25f,
+                0.03f,
+                36,
+                18
+        ));
+        tanamanKecil.get(1).translateObject(0.5f, 0.2f,0.3f);
 
         //pindah posisi karakter
         for (Object object : objects){
