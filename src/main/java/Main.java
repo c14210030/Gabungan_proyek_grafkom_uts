@@ -2648,21 +2648,22 @@ public class Main {
 
         //rotasi thd sb y masing2 character
         if(window.isKeyPressed(GLFW_KEY_Y)){
+            setYbadan(0.6f);
             for (Object object : objects) {
 //                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
-                object.rotateObjectOnPoint(1f, 0f, 1f, 0f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
+                object.rotateObjectOnPoint(0.6f, 0f, 1f, 0f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
             }
             for (Object object : objectsCony) {
 //                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
-                object.rotateObjectOnPoint(1f, 0f, 1f, 0f, objectsCony.get(0).getCpx(), objectsCony.get(0).getCpy(), objectsCony.get(0).getCpz());
+                object.rotateObjectOnPoint(0.6f, 0f, 1f, 0f, objectsCony.get(0).getCpx(), objectsCony.get(0).getCpy(), objectsCony.get(0).getCpz());
             }
             for (Object object : objectsBrown) {
 //                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
-                object.rotateObjectOnPoint(1f, 0f, 1f, 0f, objectsBrown.get(0).getCpx(), objectsBrown.get(0).getCpy(), objectsBrown.get(0).getCpz());
+                object.rotateObjectOnPoint(0.6f, 0f, 1f, 0f, objectsBrown.get(0).getCpx(), objectsBrown.get(0).getCpy(), objectsBrown.get(0).getCpz());
             }
             for (Object object : objectsSally) {
 //                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
-                object.rotateObjectOnPoint(1f, 0f, 1f, 0f, objectsSally.get(0).getCpx(), objectsSally.get(0).getCpy(), objectsSally.get(0).getCpz());
+                object.rotateObjectOnPoint(0.6f, 0f, 1f, 0f, objectsSally.get(0).getCpx(), objectsSally.get(0).getCpy(), objectsSally.get(0).getCpz());
             }
         }
 
