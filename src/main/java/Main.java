@@ -2646,6 +2646,7 @@ public class Main {
             counterDegreeKepala+=degree;
         }
 
+        //rotasi thd sb y masing2 character
         if(window.isKeyPressed(GLFW_KEY_Y)){
             for (Object object : objects) {
 //                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
