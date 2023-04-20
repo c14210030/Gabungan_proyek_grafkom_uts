@@ -2648,7 +2648,7 @@ public class Main {
 
         //rotasi thd sb y masing2 character
         if(window.isKeyPressed(GLFW_KEY_Y)){
-            setYbadan(0.6f);
+            setYbadan(0.8f);
             for (Object object : objects) {
 //                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
                 object.rotateObjectOnPoint(0.6f, 0f, 1f, 0f, objects.get(0).getCpx(), objects.get(0).getCpy(), objects.get(0).getCpz());
