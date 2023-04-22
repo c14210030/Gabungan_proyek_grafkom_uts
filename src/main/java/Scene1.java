@@ -13,10 +13,10 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL30.*;
 
-public class Main {
+public class Scene1 {
     private Window window =
             new Window
-    (800,800,"Hello World");
+                    (800,800,"Hello World");
     private ArrayList<Object> objects
             = new ArrayList<>();
     private ArrayList<Object> objectsRectangle
@@ -30,8 +30,11 @@ public class Main {
     float counterDegreeKaki = 30f;
     float counterDegreeKepala = 10f;
     float countDegreeFacing=0f;
+    float countDegreeMagic = 0f;
     int gantiArah = 1;
     float ybadan = 0f;
+    float ybadanCony = 0f;
+    boolean babify = false;
     public ArrayList<Object> bezier1 = new ArrayList<>();
     public ArrayList<Object> bezier2 = new ArrayList<>();
     public ArrayList<Object> bezier3 = new ArrayList<>();
@@ -96,555 +99,555 @@ public class Main {
         //code
         //leonard
         //kepala
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menebal
-        objects.get(0).scaleObject(0.6f,0.4f,0.3f);
-
-        //badan
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objects.get(1).translateObject(0f,-0.6f,0f);
-        objects.get(1).scaleObject(0.32f,0.45f,0.32f);
-
-        //tangan kanan
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(2).translateObject(-0.3f,-0.8f,0f);
-        //melebar, meninggi, menebal
-        objects.get(2).scaleObject(0.15f,0.38f,0.15f);
-        objects.get(2).rotateObject(0.5f,0.0f,0f,-1f);
-
-        //tangan kiri
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(3).translateObject(0.3f,-0.8f,0f);
-        //melebar, meninggi, menebal
-        objects.get(3).scaleObject(0.15f,0.38f,0.15f);
-        objects.get(3).rotateObject(0.5f,0.0f,0f,1f);
-
-        //kaki kanan
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(4).translateObject(-0.5f,-1f,0f);
-        //melebar, meninggi, menebal
-        objects.get(4).scaleObject(0.16f,0.43f,0.15f);
-
-        //kaki kiri
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                // atur warna
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(5).translateObject(0.5f,-1f,0f);
-        //melebar, meninggi, menebal
-        objects.get(5).scaleObject(0.16f,0.43f,0.15f);
-
-        //mata kanan
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(6).scaleObject(0.15f,0.2f,0.15f);
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(6).translateObject(0.14f,0.22f,0f);
-
-        //mata kiri
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(7).scaleObject(0.15f,0.2f,0.15f);
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(7).translateObject(-0.14f,0.22f,0f);
-
-        //telapak tangan kiri
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(8).translateObject(4.3f,-1.3f,0f);
-        //melebar, meninggi, menebal
-        objects.get(8).scaleObject(0.105f,0.138f,0.15f);
-        objects.get(8).rotateObject(0.55f,0.0f,0f,-1f);
-
-        //telapak tangan kanan
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(9).translateObject(-4.3f,-1.3f,0f);
-        //melebar, meninggi, menebal
-        objects.get(9).scaleObject(0.105f,0.138f,0.15f);
-        objects.get(9).rotateObject(0.55f,0.0f,0f,1f);
-
-        //telapak kaki kiri
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(10).translateObject(0.6f,-5.5f,0f);
-        //melebar, meninggi, menebal
-        objects.get(10).scaleObject(0.15f,0.11f,0.15f);
-
-        //telapak kaki kanan
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                // atur warna
-                new Vector4f(0.15f,0.65f,0.2f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(11).translateObject(-0.6f,-5.5f,0f);
-        //melebar, meninggi, menebal
-        objects.get(11).scaleObject(0.15f,0.11f,0.15f);
-
-        //putih mata kanan
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(1.0f,1.0f,1.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(12).scaleObject(0.1f,0.14f,0.05f);
-        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
-        objects.get(12).translateObject(0.14f,0.22f,-0.05f);
-
-        //putih mata kiri
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(1.0f,1.0f,1.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(13).scaleObject(0.1f,0.14f,0.05f);
-        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
-        objects.get(13).translateObject(-0.14f,0.22f,-0.05f);
-
-        //hitam mata kanan
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.0f,0.0f,0.0f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(14).scaleObject(0.07f,0.11f,0.04f);
-        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
-        objects.get(14).translateObject(0.126f,0.22f,-0.059f);
-
-        //hitam mata kiri
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.0f,0.0f,0.0f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(15).scaleObject(0.07f,0.11f,0.04f);
-        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
-        objects.get(15).translateObject(-0.154f,0.22f,-0.059f);
-
-        //hidung kanan
-        objects.add(new Sphere(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.0f,0.0f,0.0f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(16).scaleObject(0.038f,0.04f,0.03f);
-        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
-        objects.get(16).translateObject(0.03f,0.14f,-0.095f);
-
-        //hidung kiri
-        objects.add(new Sphere(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.0f,0.0f,0.0f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(17).scaleObject(0.038f,0.04f,0.03f);
-        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
-        objects.get(17).translateObject(-0.03f,0.14f,-0.095f);
-
-        //garis lurus mulut kiri
-        objects.add(new Box(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.0f,0.0f,0.0f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(18).scaleObject(0.15f,0.03f,0.03f);
-        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
-        objects.get(18).translateObject(-0.02f,0.05f,-0.14f);
-        // miring kiri\- kanan/+,naik- turun+ hilang
-        objects.get(18).rotateObject(-0.55f,0f,-0.5f,1f);
-
-        //garis mulut lurus kanan
-        objects.add(new Box(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(0.0f,0.0f,0.0f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal+
-        objects.get(19).scaleObject(0.15f,0.03f,0.03f);
-        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
-        objects.get(19).translateObject(0.02f,0.05f,-0.14f);
-        // miring kiri\- kanan/+,naik- turun+ hilang
-        objects.get(19).rotateObject(0.55f,0f,-0.5f,1f);
-
-        //topi cone natal merah
-        objects.add(new EllipticCone(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(1f,0f,0f,0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal
-        objects.get(20).scaleObject(0.15f,0.15f,0.15f);
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(20).translateObject(0.0f,0.43f,0f);
-
-        //topi cone natal putih
-        objects.add(new EllipticCone(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(1f,1f,1f,1f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal
-        objects.get(21).scaleObject(0.17f,0.0f,0.17f);
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(21).translateObject(0.0f,0.2f,0f);
-
-        //topi bulat natal putih
-        objects.add(new Sphere(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                //warna
-                new Vector4f(1f,1f,1f,1f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //melebar, meninggi, menipis- menebal
-        objects.get(22).scaleObject(0.05f,0.05f,0.05f);
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(22).translateObject(0.005f,0.44f,0f);
-
-        //ikat pinggang hitam
-        objects.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.0f,0.0f,0.0f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(23).translateObject(0f,-2.25f,0f);
-        //melebar, meninggi, menipis- menebal
-        objects.get(23).scaleObject(0.35f,0.15f,0.35f);
-
-        //ikat pinggang kotak kuning
-        objects.add(new Box(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,1.0f,0.0f,0.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(24).translateObject(0f,-1.7f,-0.59f);
-        //melebar, meninggi, menipis- menebal
-        objects.get(24).scaleObject(0.22f,0.2f,0.2f);
-        bezier1.add(new Object(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
-        ));
-        bezier2.add(new Object(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
-        ));
-        bezierMulut(controlbezier1,0);
-        objects.add(bezier1.get(0));
-        //geser kiri- kanan+, bawah- atas+, dorong
-        objects.get(25).translateObject(0.1f,0.03f,0.083f);
-        bezierMulut(controlbezier2,1);
-        objects.add(bezier2.get(0));
-        objects.get(26).translateObject(-0.1f,0.03f,0.083f);
-
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menebal
+//        objects.get(0).scaleObject(0.6f,0.4f,0.3f);
+//
+//        //badan
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objects.get(1).translateObject(0f,-0.6f,0f);
+//        objects.get(1).scaleObject(0.32f,0.45f,0.32f);
+//
+//        //tangan kanan
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(2).translateObject(-0.3f,-0.8f,0f);
+//        //melebar, meninggi, menebal
+//        objects.get(2).scaleObject(0.15f,0.38f,0.15f);
+//        objects.get(2).rotateObject(0.5f,0.0f,0f,-1f);
+//
+//        //tangan kiri
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(3).translateObject(0.3f,-0.8f,0f);
+//        //melebar, meninggi, menebal
+//        objects.get(3).scaleObject(0.15f,0.38f,0.15f);
+//        objects.get(3).rotateObject(0.5f,0.0f,0f,1f);
+//
+//        //kaki kanan
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(4).translateObject(-0.5f,-1f,0f);
+//        //melebar, meninggi, menebal
+//        objects.get(4).scaleObject(0.16f,0.43f,0.15f);
+//
+//        //kaki kiri
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                // atur warna
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(5).translateObject(0.5f,-1f,0f);
+//        //melebar, meninggi, menebal
+//        objects.get(5).scaleObject(0.16f,0.43f,0.15f);
+//
+//        //mata kanan
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(6).scaleObject(0.15f,0.2f,0.15f);
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(6).translateObject(0.14f,0.22f,0f);
+//
+//        //mata kiri
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(7).scaleObject(0.15f,0.2f,0.15f);
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(7).translateObject(-0.14f,0.22f,0f);
+//
+//        //telapak tangan kiri
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(8).translateObject(4.3f,-1.3f,0f);
+//        //melebar, meninggi, menebal
+//        objects.get(8).scaleObject(0.105f,0.138f,0.15f);
+//        objects.get(8).rotateObject(0.55f,0.0f,0f,-1f);
+//
+//        //telapak tangan kanan
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(9).translateObject(-4.3f,-1.3f,0f);
+//        //melebar, meninggi, menebal
+//        objects.get(9).scaleObject(0.105f,0.138f,0.15f);
+//        objects.get(9).rotateObject(0.55f,0.0f,0f,1f);
+//
+//        //telapak kaki kiri
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(10).translateObject(0.6f,-5.5f,0f);
+//        //melebar, meninggi, menebal
+//        objects.get(10).scaleObject(0.15f,0.11f,0.15f);
+//
+//        //telapak kaki kanan
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                // atur warna
+//                new Vector4f(0.15f,0.65f,0.2f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(11).translateObject(-0.6f,-5.5f,0f);
+//        //melebar, meninggi, menebal
+//        objects.get(11).scaleObject(0.15f,0.11f,0.15f);
+//
+//        //putih mata kanan
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(12).scaleObject(0.1f,0.14f,0.05f);
+//        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
+//        objects.get(12).translateObject(0.14f,0.22f,-0.05f);
+//
+//        //putih mata kiri
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(1.0f,1.0f,1.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(13).scaleObject(0.1f,0.14f,0.05f);
+//        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
+//        objects.get(13).translateObject(-0.14f,0.22f,-0.05f);
+//
+//        //hitam mata kanan
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.0f,0.0f,0.0f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(14).scaleObject(0.07f,0.11f,0.04f);
+//        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
+//        objects.get(14).translateObject(0.126f,0.22f,-0.059f);
+//
+//        //hitam mata kiri
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.0f,0.0f,0.0f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(15).scaleObject(0.07f,0.11f,0.04f);
+//        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
+//        objects.get(15).translateObject(-0.154f,0.22f,-0.059f);
+//
+//        //hidung kanan
+//        objects.add(new Sphere(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.0f,0.0f,0.0f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(16).scaleObject(0.038f,0.04f,0.03f);
+//        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
+//        objects.get(16).translateObject(0.03f,0.14f,-0.095f);
+//
+//        //hidung kiri
+//        objects.add(new Sphere(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.0f,0.0f,0.0f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(17).scaleObject(0.038f,0.04f,0.03f);
+//        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
+//        objects.get(17).translateObject(-0.03f,0.14f,-0.095f);
+//
+//        //garis lurus mulut kiri
+//        objects.add(new Box(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.0f,0.0f,0.0f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(18).scaleObject(0.15f,0.03f,0.03f);
+//        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
+//        objects.get(18).translateObject(-0.02f,0.05f,-0.14f);
+//        // miring kiri\- kanan/+,naik- turun+ hilang
+//        objects.get(18).rotateObject(-0.55f,0f,-0.5f,1f);
+//
+//        //garis mulut lurus kanan
+//        objects.add(new Box(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(0.0f,0.0f,0.0f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal+
+//        objects.get(19).scaleObject(0.15f,0.03f,0.03f);
+//        //geser kiri- kanan+, bawah- atas+, maju(dorong)+ mundur(tarik)-
+//        objects.get(19).translateObject(0.02f,0.05f,-0.14f);
+//        // miring kiri\- kanan/+,naik- turun+ hilang
+//        objects.get(19).rotateObject(0.55f,0f,-0.5f,1f);
+//
+//        //topi cone natal merah
+//        objects.add(new EllipticCone(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(1f,0f,0f,0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal
+//        objects.get(20).scaleObject(0.15f,0.15f,0.15f);
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(20).translateObject(0.0f,0.43f,0f);
+//
+//        //topi cone natal putih
+//        objects.add(new EllipticCone(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(1f,1f,1f,1f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal
+//        objects.get(21).scaleObject(0.17f,0.0f,0.17f);
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(21).translateObject(0.0f,0.2f,0f);
+//
+//        //topi bulat natal putih
+//        objects.add(new Sphere(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                //warna
+//                new Vector4f(1f,1f,1f,1f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //melebar, meninggi, menipis- menebal
+//        objects.get(22).scaleObject(0.05f,0.05f,0.05f);
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(22).translateObject(0.005f,0.44f,0f);
+//
+//        //ikat pinggang hitam
+//        objects.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.0f,0.0f,0.0f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(23).translateObject(0f,-2.25f,0f);
+//        //melebar, meninggi, menipis- menebal
+//        objects.get(23).scaleObject(0.35f,0.15f,0.35f);
+//
+//        //ikat pinggang kotak kuning
+//        objects.add(new Box(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,1.0f,0.0f,0.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(24).translateObject(0f,-1.7f,-0.59f);
+//        //melebar, meninggi, menipis- menebal
+//        objects.get(24).scaleObject(0.22f,0.2f,0.2f);
+//        bezier1.add(new Object(
+//                Arrays.asList(
+//                        //shaderFile lokasi menyesuaikan objectnya
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
+//        ));
+//        bezier2.add(new Object(
+//                Arrays.asList(
+//                        //shaderFile lokasi menyesuaikan objectnya
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
+//        ));
+//        bezierMulut(controlbezier1,0);
+//        objects.add(bezier1.get(0));
+//        //geser kiri- kanan+, bawah- atas+, dorong
+//        objects.get(25).translateObject(0.1f,0.03f,0.083f);
+//        bezierMulut(controlbezier2,1);
+//        objects.add(bezier2.get(0));
+//        objects.get(26).translateObject(-0.1f,0.03f,0.083f);
+//
 
         // Cony
         //kepala
@@ -1143,348 +1146,348 @@ public class Main {
         objectsCony.get(27).translateObject(0.005f,0.03f,0.09f);
         // Sally
         //kepala
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert", GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.8f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(0).scaleObject(0.4f,0.4f,0.4f);
-
-        //badan
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.8f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(1).translateObject(0f,-0.6f,0f);
-        objectsSally.get(1).scaleObject(0.4f,0.42f,0.38f);
-
-        //tangan kanan
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.8f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(2).translateObject(-0.25f,-0.9f,0f);
-        objectsSally.get(2).scaleObject(0.15f,0.38f,0.1f);
-        objectsSally.get(2).rotateObject(0.5f,0.0f,0f,-1f);
-
-        //tangan kiri
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.8f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(3).translateObject(0.25f,-0.9f,0f);
-        objectsSally.get(3).scaleObject(0.15f,0.38f,0.1f);
-        objectsSally.get(3).rotateObject(0.5f,0.0f,0f,1f);
-
-        //kaki kanan
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.4f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(4).translateObject(-0.45f,-0.9f,0f);
-        objectsSally.get(4).scaleObject(0.12f,0.42f,0.15f);
-
-        //kaki kiri
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.4f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(5).translateObject(0.45f,-0.9f,0f);
-        objectsSally.get(5).scaleObject(0.12f,0.42f,0.15f);
-
-        //mata kiri
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.0f,0.0f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(6).translateObject(-0.7f,0.6f,-0.6f);
-        objectsSally.get(6).scaleObject(0.06f,0.06f,0.2f);
-
-        //mata kanan
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.0f,0.0f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(7).translateObject(0.7f,0.6f,-0.6f);
-        objectsSally.get(7).scaleObject(0.06f,0.06f,0.2f);
-
-        //mulut atas
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.4f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(8).translateObject(0.f,-0.55f,-0.6f);
-        objectsSally.get(8).scaleObject(0.14f,0.06f,0.2f);
-
-        //mulut bwh
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,0.4f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(9).translateObject(0.f,-0.78f,-0.6f);
-        objectsSally.get(9).scaleObject(0.14f,0.066f,0.2f);
-
-        //telapak kaki kiri
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                // atur warna
-                new Vector4f(1.0f,0.4f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(10).translateObject(-0.55f,-5.f,-0.1f);
-        objectsSally.get(10).scaleObject(0.10f,0.11f,0.15f);
-
-        //telapak kaki kiri
-        objectsSally.add(new Ellipsoid(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                // atur warna
-                new Vector4f(1.0f,0.4f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(11).translateObject(0.55f,-5.f,-0.1f);
-        objectsSally.get(11).scaleObject(0.10f,0.11f,0.15f);
-
-        //surat
-        objectsSally.add(new Box(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(1.0f,1f,1f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(12).translateObject(0.25f,-1.96f,0f);
-        objectsSally.get(12).scaleObject(0.45f,0.3f,0.03f);
-        objectsSally.get(12).rotateObject(0.45f,0.0f,0f,1f);
-
-        //dasi
-        objectsSally.add(new EllipticConeSally(
-                Arrays.asList(
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0f,0f,0.0f,1.0f),
-                Arrays.asList(0.0f,0.0f,0.0f),
-                0.5f,
-                0.5f,
-                0.5f,
-                36,
-                18
-        ));
-        objectsSally.get(13).translateObject(10f,0f,-7.9f);
-        objectsSally.get(13).scaleObject(0.015f,0.03f,0.02f);
-        objectsSally.get(13).rotateObject(1.6f,0f,0f,-1f);
-        //bezier
-        bezier7.add(new Object(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
-        ));
-        bezier8.add(new Object(
-                Arrays.asList(
-                        //shaderFile lokasi menyesuaikan objectnya
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.vert"
-                                        , GL_VERTEX_SHADER),
-                        new ShaderProgram.ShaderModuleData
-                                ("resources/shaders/scene.frag"
-                                        , GL_FRAGMENT_SHADER)
-                ),
-                new ArrayList<>(),
-                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
-        ));
-        //Alis kiri
-        bezierMulut(controlbezier4,6);
-        objectsSally.get(0).getChildObject().add(bezier7.get(0));
-        //Alis kanan
-        bezierMulut(controlbezier5,7);
-        objectsSally.get(0).getChildObject().add(bezier8.get(0));
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.8f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(0).scaleObject(0.4f,0.4f,0.4f);
+//
+//        //badan
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.8f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(1).translateObject(0f,-0.6f,0f);
+//        objectsSally.get(1).scaleObject(0.4f,0.42f,0.38f);
+//
+//        //tangan kanan
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.8f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(2).translateObject(-0.25f,-0.9f,0f);
+//        objectsSally.get(2).scaleObject(0.15f,0.38f,0.1f);
+//        objectsSally.get(2).rotateObject(0.5f,0.0f,0f,-1f);
+//
+//        //tangan kiri
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.8f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(3).translateObject(0.25f,-0.9f,0f);
+//        objectsSally.get(3).scaleObject(0.15f,0.38f,0.1f);
+//        objectsSally.get(3).rotateObject(0.5f,0.0f,0f,1f);
+//
+//        //kaki kanan
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.4f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(4).translateObject(-0.45f,-0.9f,0f);
+//        objectsSally.get(4).scaleObject(0.12f,0.42f,0.15f);
+//
+//        //kaki kiri
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.4f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(5).translateObject(0.45f,-0.9f,0f);
+//        objectsSally.get(5).scaleObject(0.12f,0.42f,0.15f);
+//
+//        //mata kiri
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.0f,0.0f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(6).translateObject(-0.7f,0.6f,-0.6f);
+//        objectsSally.get(6).scaleObject(0.06f,0.06f,0.2f);
+//
+//        //mata kanan
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.0f,0.0f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(7).translateObject(0.7f,0.6f,-0.6f);
+//        objectsSally.get(7).scaleObject(0.06f,0.06f,0.2f);
+//
+//        //mulut atas
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.4f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(8).translateObject(0.f,-0.55f,-0.6f);
+//        objectsSally.get(8).scaleObject(0.14f,0.06f,0.2f);
+//
+//        //mulut bwh
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,0.4f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(9).translateObject(0.f,-0.78f,-0.6f);
+//        objectsSally.get(9).scaleObject(0.14f,0.066f,0.2f);
+//
+//        //telapak kaki kiri
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                // atur warna
+//                new Vector4f(1.0f,0.4f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(10).translateObject(-0.55f,-5.f,-0.1f);
+//        objectsSally.get(10).scaleObject(0.10f,0.11f,0.15f);
+//
+//        //telapak kaki kiri
+//        objectsSally.add(new Ellipsoid(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                // atur warna
+//                new Vector4f(1.0f,0.4f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(11).translateObject(0.55f,-5.f,-0.1f);
+//        objectsSally.get(11).scaleObject(0.10f,0.11f,0.15f);
+//
+//        //surat
+//        objectsSally.add(new Box(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(1.0f,1f,1f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(12).translateObject(0.25f,-1.96f,0f);
+//        objectsSally.get(12).scaleObject(0.45f,0.3f,0.03f);
+//        objectsSally.get(12).rotateObject(0.45f,0.0f,0f,1f);
+//
+//        //dasi
+//        objectsSally.add(new EllipticConeSally(
+//                Arrays.asList(
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0f,0f,0.0f,1.0f),
+//                Arrays.asList(0.0f,0.0f,0.0f),
+//                0.5f,
+//                0.5f,
+//                0.5f,
+//                36,
+//                18
+//        ));
+//        objectsSally.get(13).translateObject(10f,0f,-7.9f);
+//        objectsSally.get(13).scaleObject(0.015f,0.03f,0.02f);
+//        objectsSally.get(13).rotateObject(1.6f,0f,0f,-1f);
+//        //bezier
+//        bezier7.add(new Object(
+//                Arrays.asList(
+//                        //shaderFile lokasi menyesuaikan objectnya
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
+//        ));
+//        bezier8.add(new Object(
+//                Arrays.asList(
+//                        //shaderFile lokasi menyesuaikan objectnya
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.vert"
+//                                        , GL_VERTEX_SHADER),
+//                        new ShaderProgram.ShaderModuleData
+//                                ("resources/shaders/scene.frag"
+//                                        , GL_FRAGMENT_SHADER)
+//                ),
+//                new ArrayList<>(),
+//                new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
+//        ));
+//        //Alis kiri
+//        bezierMulut(controlbezier4,6);
+//        objectsSally.get(0).getChildObject().add(bezier7.get(0));
+//        //Alis kanan
+//        bezierMulut(controlbezier5,7);
+//        objectsSally.get(0).getChildObject().add(bezier8.get(0));
         //Brown
         //kepala (parent)
         objectsBrown.add(new EllipsoidBrown(
@@ -2138,20 +2141,20 @@ public class Main {
         tanamanKecil.get(1).getChildObject().get(0).translateObject(-0.5f, 0.2f,0.3f);
 
         //pindah posisi karakter
-        for (Object object : objects){
-            object.translateObject(-1.5f,-0.14f,0f);
-            object.scaleObject(0.5f,0.5f,0.6f);
-        }
+//        for (Object object : objects){
+//            object.translateObject(-1.5f,-0.14f,0f);
+//            object.scaleObject(0.5f,0.5f,0.6f);
+//        }
         for (Object object : objectsCony){
-            object.translateObject(-0.46f,0.08f,0f);
+            object.translateObject(-1.9f,0.05f,-0.5f);
             object.scaleObject(0.7f,0.7f,0.7f);
         }
-        for (Object object : objectsSally){
-            object.translateObject(0.07f,-0.45f,0f);
-            object.scaleObject(0.4f,0.4f,0.5f);
-        }
+//        for (Object object : objectsSally){
+//            object.translateObject(0.07f,-0.45f,0f);
+//            object.scaleObject(0.4f,0.4f,0.5f);
+//        }
         for (Object object : objectsBrown){
-            object.translateObject(0.7f,0.09f,0f);
+            object.translateObject(0.07f,0.09f,0f);
             object.scaleObject(0.7f,0.7f,0.7f);
         }
         for(Object object : objectsBrown.get(0).getChildObject()){
@@ -2163,6 +2166,7 @@ public class Main {
         //puter ke kiri
         if (window.isKeyPressed(GLFW_KEY_A)) {
             setYbadan(0.5f);
+            setYbadanCony(0.5f);
             for (Object object : objects){
                 object.rotateObject((float) Math.toRadians(0.5f),0.0f,1.0f,0.0f);
             }
@@ -2181,6 +2185,7 @@ public class Main {
         //puter ke kanan
         if (window.isKeyPressed(GLFW_KEY_D)) {
             setYbadan(-0.5f);
+            setYbadanCony(-0.5f);
             for (Object object : objects) {
                 object.rotateObject((float) Math.toRadians(0.5f), 0.0f, -1.0f, 0.0f);
             }
@@ -2266,42 +2271,42 @@ public class Main {
                     object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
                 }
                 //kaki kanan
-                List<Float> temp0 = new ArrayList<>(objects.get(2).getCenterPoint());
-                objects.get(4).translateObject(temp0.get(0) * -1, temp0.get(1) * -1, temp0.get(2) * -1);
-                objects.get(4).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-                objects.get(4).translateObject(temp0.get(0) * 1, temp0.get(1) * 1, temp0.get(2) * 1);
-                //kaki kiri
-                List<Float> temp1 = new ArrayList<>(objects.get(3).getCenterPoint());
-                objects.get(5).translateObject(temp1.get(0) * -1, temp1.get(1) * -1, temp1.get(2) * -1);
-                objects.get(5).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-                objects.get(5).translateObject(temp1.get(0) * 1, temp1.get(1) * 1, temp1.get(2) * 1);
-                //telapak kaki kanan
-                objects.get(11).translateObject(temp0.get(0) * -1, temp0.get(1) * -1, temp0.get(2) * -1);
-                objects.get(11).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-                objects.get(11).translateObject(temp0.get(0) * 1, temp0.get(1) * 1, temp0.get(2) * 1);
-                //telapak kaki kiri
-                objects.get(10).translateObject(temp1.get(0) * -1, temp1.get(1) * -1, temp1.get(2) * -1);
-                objects.get(10).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-                objects.get(10).translateObject(temp1.get(0) * 1, temp1.get(1) * 1, temp1.get(2) * 1);
-
-                //tangan kanan
-                List<Float> temp2 = new ArrayList<>(objects.get(2).getCenterPoint());
-                objects.get(2).translateObject(temp2.get(0) * -1, temp2.get(1) * -1, temp2.get(2) * -1);
-                objects.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-                objects.get(2).translateObject(temp2.get(0) * 1, temp2.get(1) * 1, temp2.get(2) * 1);
-                //tangan kiri
-                List<Float> temp3 = new ArrayList<>(objects.get(3).getCenterPoint());
-                objects.get(3).translateObject(temp3.get(0) * -1, temp3.get(1) * -1, temp3.get(2) * -1);
-                objects.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-                objects.get(3).translateObject(temp3.get(0) * 1, temp3.get(1) * 1, temp3.get(2) * 1);
-                //telapak tangan kanan
-                objects.get(9).translateObject(temp2.get(0) * -1, temp2.get(1) * -1, temp2.get(2) * -1);
-                objects.get(9).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-                objects.get(9).translateObject(temp2.get(0) * 1, temp2.get(1) * 1, temp2.get(2) * 1);
-                //telapak tangan kiri
-                objects.get(8).translateObject(temp3.get(0) * -1, temp3.get(1) * -1, temp3.get(2) * -1);
-                objects.get(8).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-                objects.get(8).translateObject(temp3.get(0) * 1, temp3.get(1) * 1, temp3.get(2) * 1);
+//                List<Float> temp0 = new ArrayList<>(objects.get(2).getCenterPoint());
+//                objects.get(4).translateObject(temp0.get(0) * -1, temp0.get(1) * -1, temp0.get(2) * -1);
+//                objects.get(4).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objects.get(4).translateObject(temp0.get(0) * 1, temp0.get(1) * 1, temp0.get(2) * 1);
+//                //kaki kiri
+//                List<Float> temp1 = new ArrayList<>(objects.get(3).getCenterPoint());
+//                objects.get(5).translateObject(temp1.get(0) * -1, temp1.get(1) * -1, temp1.get(2) * -1);
+//                objects.get(5).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objects.get(5).translateObject(temp1.get(0) * 1, temp1.get(1) * 1, temp1.get(2) * 1);
+//                //telapak kaki kanan
+//                objects.get(11).translateObject(temp0.get(0) * -1, temp0.get(1) * -1, temp0.get(2) * -1);
+//                objects.get(11).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objects.get(11).translateObject(temp0.get(0) * 1, temp0.get(1) * 1, temp0.get(2) * 1);
+//                //telapak kaki kiri
+//                objects.get(10).translateObject(temp1.get(0) * -1, temp1.get(1) * -1, temp1.get(2) * -1);
+//                objects.get(10).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objects.get(10).translateObject(temp1.get(0) * 1, temp1.get(1) * 1, temp1.get(2) * 1);
+//
+//                //tangan kanan
+//                List<Float> temp2 = new ArrayList<>(objects.get(2).getCenterPoint());
+//                objects.get(2).translateObject(temp2.get(0) * -1, temp2.get(1) * -1, temp2.get(2) * -1);
+//                objects.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objects.get(2).translateObject(temp2.get(0) * 1, temp2.get(1) * 1, temp2.get(2) * 1);
+//                //tangan kiri
+//                List<Float> temp3 = new ArrayList<>(objects.get(3).getCenterPoint());
+//                objects.get(3).translateObject(temp3.get(0) * -1, temp3.get(1) * -1, temp3.get(2) * -1);
+//                objects.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objects.get(3).translateObject(temp3.get(0) * 1, temp3.get(1) * 1, temp3.get(2) * 1);
+//                //telapak tangan kanan
+//                objects.get(9).translateObject(temp2.get(0) * -1, temp2.get(1) * -1, temp2.get(2) * -1);
+//                objects.get(9).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objects.get(9).translateObject(temp2.get(0) * 1, temp2.get(1) * 1, temp2.get(2) * 1);
+//                //telapak tangan kiri
+//                objects.get(8).translateObject(temp3.get(0) * -1, temp3.get(1) * -1, temp3.get(2) * -1);
+//                objects.get(8).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objects.get(8).translateObject(temp3.get(0) * 1, temp3.get(1) * 1, temp3.get(2) * 1);
 
                 //Brown
                 //kaki kanan
@@ -2365,38 +2370,38 @@ public class Main {
 
                 //Sally
                 //kaki kanan
-                List<Float> temp0S = new ArrayList<>(objectsSally.get(2).getCenterPoint());
-                objectsSally.get(4).translateObject(temp0S.get(0) * -1, temp0S.get(1) * -1, temp0S.get(2) * -1);
-                objectsSally.get(4).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-                objectsSally.get(4).translateObject(temp0S.get(0) * 1, temp0S.get(1) * 1, temp0S.get(2) * 1);
-                //kaki kiri
-                List<Float> temp1S = new ArrayList<>(objectsSally.get(3).getCenterPoint());
-                objectsSally.get(5).translateObject(temp1S.get(0) * -1, temp1S.get(1) * -1, temp1S.get(2) * -1);
-                objectsSally.get(5).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-                objectsSally.get(5).translateObject(temp1S.get(0) * 1, temp1S.get(1) * 1, temp1S.get(2) * 1);
-                //telapak kaki kanan
-                objectsSally.get(10).translateObject(temp0S.get(0) * -1, temp0S.get(1) * -1, temp0S.get(2) * -1);
-                objectsSally.get(10).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-                objectsSally.get(10).translateObject(temp0S.get(0) * 1, temp0S.get(1) * 1, temp0S.get(2) * 1);
-                //telapak kaki kiri
-                objectsSally.get(11).translateObject(temp1S.get(0) * -1, temp1S.get(1) * -1, temp1S.get(2) * -1);
-                objectsSally.get(11).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-                objectsSally.get(11).translateObject(temp1S.get(0) * 1, temp1S.get(1) * 1, temp1S.get(2) * 1);
-
-                //tangan kanan
-                List<Float> temp2S = new ArrayList<>(objectsSally.get(2).getCenterPoint());
-                objectsSally.get(2).translateObject(temp2S.get(0) * -1, temp2S.get(1) * -1, temp2S.get(2) * -1);
-                objectsSally.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
-                objectsSally.get(2).translateObject(temp2S.get(0) * 1, temp2S.get(1) * 1, temp2S.get(2) * 1);
-                //tangan kiri
-                List<Float> temp3S = new ArrayList<>(objectsSally.get(3).getCenterPoint());
-                objectsSally.get(3).translateObject(temp3S.get(0) * -1, temp3S.get(1) * -1, temp3S.get(2) * -1);
-                objectsSally.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
-                objectsSally.get(3).translateObject(temp3S.get(0) * 1, temp3S.get(1) * 1, temp3S.get(2) * 1);
-                //surat
-                objectsSally.get(12).translateObject(temp2S.get(0) * -1, temp2S.get(1) * -1, temp2S.get(2) * -1);
-                objectsSally.get(12).rotateObject((float) Math.toRadians(gantiArah * (degree)), 1f, 0f, 0f);
-                objectsSally.get(12).translateObject(temp2S.get(0) * 1, temp2S.get(1) * 1, temp2S.get(2) * 1);
+//                List<Float> temp0S = new ArrayList<>(objectsSally.get(2).getCenterPoint());
+//                objectsSally.get(4).translateObject(temp0S.get(0) * -1, temp0S.get(1) * -1, temp0S.get(2) * -1);
+//                objectsSally.get(4).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsSally.get(4).translateObject(temp0S.get(0) * 1, temp0S.get(1) * 1, temp0S.get(2) * 1);
+//                //kaki kiri
+//                List<Float> temp1S = new ArrayList<>(objectsSally.get(3).getCenterPoint());
+//                objectsSally.get(5).translateObject(temp1S.get(0) * -1, temp1S.get(1) * -1, temp1S.get(2) * -1);
+//                objectsSally.get(5).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsSally.get(5).translateObject(temp1S.get(0) * 1, temp1S.get(1) * 1, temp1S.get(2) * 1);
+//                //telapak kaki kanan
+//                objectsSally.get(10).translateObject(temp0S.get(0) * -1, temp0S.get(1) * -1, temp0S.get(2) * -1);
+//                objectsSally.get(10).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsSally.get(10).translateObject(temp0S.get(0) * 1, temp0S.get(1) * 1, temp0S.get(2) * 1);
+//                //telapak kaki kiri
+//                objectsSally.get(11).translateObject(temp1S.get(0) * -1, temp1S.get(1) * -1, temp1S.get(2) * -1);
+//                objectsSally.get(11).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsSally.get(11).translateObject(temp1S.get(0) * 1, temp1S.get(1) * 1, temp1S.get(2) * 1);
+//
+//                //tangan kanan
+//                List<Float> temp2S = new ArrayList<>(objectsSally.get(2).getCenterPoint());
+//                objectsSally.get(2).translateObject(temp2S.get(0) * -1, temp2S.get(1) * -1, temp2S.get(2) * -1);
+//                objectsSally.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsSally.get(2).translateObject(temp2S.get(0) * 1, temp2S.get(1) * 1, temp2S.get(2) * 1);
+//                //tangan kiri
+//                List<Float> temp3S = new ArrayList<>(objectsSally.get(3).getCenterPoint());
+//                objectsSally.get(3).translateObject(temp3S.get(0) * -1, temp3S.get(1) * -1, temp3S.get(2) * -1);
+//                objectsSally.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsSally.get(3).translateObject(temp3S.get(0) * 1, temp3S.get(1) * 1, temp3S.get(2) * 1);
+//                //surat
+//                objectsSally.get(12).translateObject(temp2S.get(0) * -1, temp2S.get(1) * -1, temp2S.get(2) * -1);
+//                objectsSally.get(12).rotateObject((float) Math.toRadians(gantiArah * (degree)), 1f, 0f, 0f);
+//                objectsSally.get(12).translateObject(temp2S.get(0) * 1, temp2S.get(1) * 1, temp2S.get(2) * 1);
 
                 for (Object object : objects) {
                     object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
@@ -2426,6 +2431,187 @@ public class Main {
             }
         }
 
+        //Cony Jalan
+        if (window.isKeyPressed(GLFW_KEY_RIGHT)) {
+            if (countDegreeFacing <= 90){
+                setYbadanCony(1f);
+                List<Float> tempp= new ArrayList<>(objectsCony.get(0).getCenterPoint());
+                for (Object object : objectsCony) {
+                    object.translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
+                    object.rotateObject((float) Math.toRadians(1f), 0f, -1f, 0f);
+                    object.translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
+                }
+                countDegreeFacing += 1f;
+            }
+            else {
+                float degree = 0.7f;
+                System.out.println("count degree kaki: " + counterDegreeKaki);
+                if (counterDegreeKaki >= 60f) {
+                    gantiArah *= -1;
+                    counterDegreeKaki = 0;
+                    System.out.println("ganti arah");
+                }
+                for (Object object : objectsCony) {
+                    object.rotateObject((float) Math.toRadians(-ybadanCony), 0f, 1f, 0f);
+                }
+                //kaki kanan
+//                List<Float> temp0 = new ArrayList<>(objects.get(2).getCenterPoint());
+//                objects.get(4).translateObject(temp0.get(0) * -1, temp0.get(1) * -1, temp0.get(2) * -1);
+//                objects.get(4).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objects.get(4).translateObject(temp0.get(0) * 1, temp0.get(1) * 1, temp0.get(2) * 1);
+//                //kaki kiri
+//                List<Float> temp1 = new ArrayList<>(objects.get(3).getCenterPoint());
+//                objects.get(5).translateObject(temp1.get(0) * -1, temp1.get(1) * -1, temp1.get(2) * -1);
+//                objects.get(5).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objects.get(5).translateObject(temp1.get(0) * 1, temp1.get(1) * 1, temp1.get(2) * 1);
+//                //telapak kaki kanan
+//                objects.get(11).translateObject(temp0.get(0) * -1, temp0.get(1) * -1, temp0.get(2) * -1);
+//                objects.get(11).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objects.get(11).translateObject(temp0.get(0) * 1, temp0.get(1) * 1, temp0.get(2) * 1);
+//                //telapak kaki kiri
+//                objects.get(10).translateObject(temp1.get(0) * -1, temp1.get(1) * -1, temp1.get(2) * -1);
+//                objects.get(10).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objects.get(10).translateObject(temp1.get(0) * 1, temp1.get(1) * 1, temp1.get(2) * 1);
+//
+//                //tangan kanan
+//                List<Float> temp2 = new ArrayList<>(objects.get(2).getCenterPoint());
+//                objects.get(2).translateObject(temp2.get(0) * -1, temp2.get(1) * -1, temp2.get(2) * -1);
+//                objects.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objects.get(2).translateObject(temp2.get(0) * 1, temp2.get(1) * 1, temp2.get(2) * 1);
+//                //tangan kiri
+//                List<Float> temp3 = new ArrayList<>(objects.get(3).getCenterPoint());
+//                objects.get(3).translateObject(temp3.get(0) * -1, temp3.get(1) * -1, temp3.get(2) * -1);
+//                objects.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objects.get(3).translateObject(temp3.get(0) * 1, temp3.get(1) * 1, temp3.get(2) * 1);
+//                //telapak tangan kanan
+//                objects.get(9).translateObject(temp2.get(0) * -1, temp2.get(1) * -1, temp2.get(2) * -1);
+//                objects.get(9).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objects.get(9).translateObject(temp2.get(0) * 1, temp2.get(1) * 1, temp2.get(2) * 1);
+//                //telapak tangan kiri
+//                objects.get(8).translateObject(temp3.get(0) * -1, temp3.get(1) * -1, temp3.get(2) * -1);
+//                objects.get(8).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objects.get(8).translateObject(temp3.get(0) * 1, temp3.get(1) * 1, temp3.get(2) * 1);
+
+                //Brown
+//                //kaki kanan
+//                List<Float> tempp = new ArrayList<>(objectsBrown.get(4).getCenterPoint());
+//                objectsBrown.get(4).translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
+//                objectsBrown.get(4).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsBrown.get(4).translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
+//                //kaki kiri
+//                List<Float> temp1B = new ArrayList<>(objectsBrown.get(5).getCenterPoint());
+//                objectsBrown.get(5).translateObject(temp1B.get(0) * -1, temp1B.get(1) * -1, temp1B.get(2) * -1);
+//                objectsBrown.get(5).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsBrown.get(5).translateObject(temp1B.get(0) * 1, temp1B.get(1) * 1, temp1B.get(2) * 1);
+//                //telapak kaki kanan
+//                objectsBrown.get(6).translateObject(tempp.get(0) * -1, tempp.get(1) * -1, tempp.get(2) * -1);
+//                objectsBrown.get(6).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsBrown.get(6).translateObject(tempp.get(0) * 1, tempp.get(1) * 1, tempp.get(2) * 1);
+//                //telapak kaki kiri
+//                objectsBrown.get(7).translateObject(temp1B.get(0) * -1, temp1B.get(1) * -1, temp1B.get(2) * -1);
+//                objectsBrown.get(7).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsBrown.get(7).translateObject(temp1B.get(0) * 1, temp1B.get(1) * 1, temp1B.get(2) * 1);
+//                //tangan kanan
+//                List<Float> temp2B = new ArrayList<>(objectsBrown.get(2).getCenterPoint());
+//                objectsBrown.get(2).translateObject(temp2B.get(0) * -1, temp2B.get(1) * -1, temp2B.get(2) * -1);
+//                objectsBrown.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsBrown.get(2).translateObject(temp2B.get(0) * 1, temp2B.get(1) * 1, temp2B.get(2) * 1);
+//                //tangan kiri
+//                List<Float> temp3B = new ArrayList<>(objectsBrown.get(3).getCenterPoint());
+//                objectsBrown.get(3).translateObject(temp3B.get(0) * -1, temp3B.get(1) * -1, temp3B.get(2) * -1);
+//                objectsBrown.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsBrown.get(3).translateObject(temp3B.get(0) * 1, temp3B.get(1) * 1, temp3B.get(2) * 1);
+
+                //Cony
+                //kaki kanan
+                List<Float> temppc = new ArrayList<>(objectsCony.get(4).getCenterPoint());
+                objectsCony.get(4).translateObject(temppc.get(0) * -1, temppc.get(1) * -1, temppc.get(2) * -1);
+                objectsCony.get(4).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+                objectsCony.get(4).translateObject(temppc.get(0) * 1, temppc.get(1) * 1, temppc.get(2) * 1);
+                //kaki kiri
+                List<Float> temp1C = new ArrayList<>(objectsCony.get(6).getCenterPoint());
+                objectsCony.get(6).translateObject(temp1C.get(0) * -1, temp1C.get(1) * -1, temp1C.get(2) * -1);
+                objectsCony.get(6).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+                objectsCony.get(6).translateObject(temp1C.get(0) * 1, temp1C.get(1) * 1, temp1C.get(2) * 1);
+                //telapak kaki kanan
+                objectsCony.get(5).translateObject(temppc.get(0) * -1, temppc.get(1) * -1, temppc.get(2) * -1);
+                objectsCony.get(5).rotateObject((float) Math.toRadians(gantiArah * -degree), 1f, 0f, 0f);
+                objectsCony.get(5).translateObject(temppc.get(0) * 1, temppc.get(1) * 1, temppc.get(2) * 1);
+                //telapak kaki kiri
+                objectsCony.get(7).translateObject(temp1C.get(0) * -1, temp1C.get(1) * -1, temp1C.get(2) * -1);
+                objectsCony.get(7).rotateObject((float) Math.toRadians(gantiArah * (degree)), 1f, 0f, 0f);
+                objectsCony.get(7).translateObject(temp1C.get(0) * 1, temp1C.get(1) * 1, temp1C.get(2) * 1);
+                //tangan kanan
+                List<Float> temp2C = new ArrayList<>(objectsCony.get(2).getCenterPoint());
+                objectsCony.get(2).translateObject(temp2C.get(0) * -1, temp2C.get(1) * -1, temp2C.get(2) * -1);
+                objectsCony.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+                objectsCony.get(2).translateObject(temp2C.get(0) * 1, temp2C.get(1) * 1, temp2C.get(2) * 1);
+                //tangan kiri
+                List<Float> temp3C = new ArrayList<>(objectsCony.get(3).getCenterPoint());
+                objectsCony.get(3).translateObject(temp3C.get(0) * -1, temp3C.get(1) * -1, temp3C.get(2) * -1);
+                objectsCony.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+                objectsCony.get(3).translateObject(temp3C.get(0) * 1, temp3C.get(1) * 1, temp3C.get(2) * 1);
+
+                //Sally
+                //kaki kanan
+//                List<Float> temp0S = new ArrayList<>(objectsSally.get(2).getCenterPoint());
+//                objectsSally.get(4).translateObject(temp0S.get(0) * -1, temp0S.get(1) * -1, temp0S.get(2) * -1);
+//                objectsSally.get(4).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsSally.get(4).translateObject(temp0S.get(0) * 1, temp0S.get(1) * 1, temp0S.get(2) * 1);
+//                //kaki kiri
+//                List<Float> temp1S = new ArrayList<>(objectsSally.get(3).getCenterPoint());
+//                objectsSally.get(5).translateObject(temp1S.get(0) * -1, temp1S.get(1) * -1, temp1S.get(2) * -1);
+//                objectsSally.get(5).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsSally.get(5).translateObject(temp1S.get(0) * 1, temp1S.get(1) * 1, temp1S.get(2) * 1);
+//                //telapak kaki kanan
+//                objectsSally.get(10).translateObject(temp0S.get(0) * -1, temp0S.get(1) * -1, temp0S.get(2) * -1);
+//                objectsSally.get(10).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsSally.get(10).translateObject(temp0S.get(0) * 1, temp0S.get(1) * 1, temp0S.get(2) * 1);
+//                //telapak kaki kiri
+//                objectsSally.get(11).translateObject(temp1S.get(0) * -1, temp1S.get(1) * -1, temp1S.get(2) * -1);
+//                objectsSally.get(11).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsSally.get(11).translateObject(temp1S.get(0) * 1, temp1S.get(1) * 1, temp1S.get(2) * 1);
+//
+//                //tangan kanan
+//                List<Float> temp2S = new ArrayList<>(objectsSally.get(2).getCenterPoint());
+//                objectsSally.get(2).translateObject(temp2S.get(0) * -1, temp2S.get(1) * -1, temp2S.get(2) * -1);
+//                objectsSally.get(2).rotateObject((float) Math.toRadians(gantiArah * (-degree)), 1f, 0f, 0f);
+//                objectsSally.get(2).translateObject(temp2S.get(0) * 1, temp2S.get(1) * 1, temp2S.get(2) * 1);
+//                //tangan kiri
+//                List<Float> temp3S = new ArrayList<>(objectsSally.get(3).getCenterPoint());
+//                objectsSally.get(3).translateObject(temp3S.get(0) * -1, temp3S.get(1) * -1, temp3S.get(2) * -1);
+//                objectsSally.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 1f, 0f, 0f);
+//                objectsSally.get(3).translateObject(temp3S.get(0) * 1, temp3S.get(1) * 1, temp3S.get(2) * 1);
+//                //surat
+//                objectsSally.get(12).translateObject(temp2S.get(0) * -1, temp2S.get(1) * -1, temp2S.get(2) * -1);
+//                objectsSally.get(12).rotateObject((float) Math.toRadians(gantiArah * (degree)), 1f, 0f, 0f);
+//                objectsSally.get(12).translateObject(temp2S.get(0) * 1, temp2S.get(1) * 1, temp2S.get(2) * 1);
+
+                for (Object object : objectsCony) {
+                    object.rotateObject((float) Math.toRadians(ybadanCony), 0f, 1f, 0f);
+                }
+
+                counterDegreeKaki += degree;
+                for (Object object : objectsCony) {
+                    object.translateObject(0.005f, 0f, 0f);
+                }
+            }
+        }
+        //Cony Magic Hand
+        if(window.isKeyPressed(GLFW_KEY_H)){
+            float degree = 1f;
+            if (countDegreeMagic >= 10f) {
+                gantiArah *= -1;
+                countDegreeMagic = 0;
+                System.out.println("ganti arah");
+            }
+            List<Float> temp3C = new ArrayList<>(objectsCony.get(3).getCenterPoint());
+            objectsCony.get(3).translateObject(temp3C.get(0) * -1, temp3C.get(1) * -1, temp3C.get(2) * -1);
+            objectsCony.get(3).rotateObject((float) Math.toRadians(gantiArah * degree), 0f, 0f, 1f);
+            objectsCony.get(3).translateObject(temp3C.get(0) * 1, temp3C.get(1) * 1, temp3C.get(2) * 1);
+            countDegreeMagic+=degree;
+        }
+
 //        Ngangguk kepala
         if (window.isKeyPressed(GLFW_KEY_Q)){
             float degree = 0.3f;
@@ -2439,7 +2625,7 @@ public class Main {
                 object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
             }
             for (Object object : objectsCony) {
-                object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
+                object.rotateObject((float) Math.toRadians(-ybadanCony), 0f, 1f, 0f);
             }
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
@@ -2448,30 +2634,30 @@ public class Main {
                 object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
             }
             //kepala
-            List<Float> tempp = new ArrayList<>(objects.get(2).getCenterPoint());
-            objects.get(0).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(0).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
-            objects.get(0).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            //mata kiri
-            objects.get(6).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(6).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
-            objects.get(6).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            //mata kanan
-            objects.get(7).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(7).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
-            objects.get(7).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            //wajah
-            for (int i = 12; i <= 22; i++){
-                objects.get(i).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-                objects.get(i).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
-                objects.get(i).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            }
-            objects.get(25).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(25).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
-            objects.get(25).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            objects.get(26).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(26).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
-            objects.get(26).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            List<Float> tempp = new ArrayList<>(objects.get(2).getCenterPoint());
+//            objects.get(0).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(0).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
+//            objects.get(0).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            //mata kiri
+//            objects.get(6).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(6).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
+//            objects.get(6).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            //mata kanan
+//            objects.get(7).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(7).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
+//            objects.get(7).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            //wajah
+//            for (int i = 12; i <= 22; i++){
+//                objects.get(i).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//                objects.get(i).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
+//                objects.get(i).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            }
+//            objects.get(25).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(25).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
+//            objects.get(25).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            objects.get(26).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(26).rotateObject((float)Math.toRadians(gantiArah*(-degree)), -1f, 0f,0f);
+//            objects.get(26).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
 
             //Brown
             //kepala
@@ -2549,32 +2735,32 @@ public class Main {
 
             //Sally
             //kepala
-            List<Float> temp0S = new ArrayList<>(objectsSally.get(0).getCenterPoint());
-            objectsSally.get(0).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(0).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
-            objectsSally.get(0).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
-            //mata kiri
-            objectsSally.get(6).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(6).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
-            objectsSally.get(6).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
-            //mata kanan
-            objectsSally.get(7).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(7).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
-            objectsSally.get(7).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
-            //mulut atas
-            objectsSally.get(8).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(8).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
-            objectsSally.get(8).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
-            //mulut bawah
-            objectsSally.get(9).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(9).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
-            objectsSally.get(9).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            List<Float> temp0S = new ArrayList<>(objectsSally.get(0).getCenterPoint());
+//            objectsSally.get(0).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(0).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
+//            objectsSally.get(0).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            //mata kiri
+//            objectsSally.get(6).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(6).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
+//            objectsSally.get(6).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            //mata kanan
+//            objectsSally.get(7).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(7).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
+//            objectsSally.get(7).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            //mulut atas
+//            objectsSally.get(8).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(8).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
+//            objectsSally.get(8).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            //mulut bawah
+//            objectsSally.get(9).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(9).rotateObject((float)Math.toRadians(gantiArah*degree), 1f, 0f,0f);
+//            objectsSally.get(9).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
 
             for (Object object : objects) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
             }
             for (Object object : objectsCony) {
-                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
+                object.rotateObject((float) Math.toRadians(ybadanCony), 0f, 1f, 0f);
             }
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
@@ -2598,7 +2784,7 @@ public class Main {
                 object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
             }
             for (Object object : objectsCony) {
-                object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
+                object.rotateObject((float) Math.toRadians(-ybadanCony), 0f, 1f, 0f);
             }
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
@@ -2607,30 +2793,30 @@ public class Main {
                 object.rotateObject((float) Math.toRadians(-ybadan), 0f, 1f, 0f);
             }
             //kepala
-            List<Float> tempp = new ArrayList<>(objects.get(2).getCenterPoint());
-            objects.get(0).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(0).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objects.get(0).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            //mata kiri
-            objects.get(6).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(6).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objects.get(6).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            //mata kanan
-            objects.get(7).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(7).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objects.get(7).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            //wajah
-            for (int i = 12; i <= 22; i++){
-                objects.get(i).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-                objects.get(i).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-                objects.get(i).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            }
-            objects.get(25).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(25).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objects.get(25).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
-            objects.get(26).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
-            objects.get(26).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objects.get(26).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            List<Float> tempp = new ArrayList<>(objects.get(2).getCenterPoint());
+//            objects.get(0).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(0).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objects.get(0).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            //mata kiri
+//            objects.get(6).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(6).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objects.get(6).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            //mata kanan
+//            objects.get(7).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(7).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objects.get(7).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            //wajah
+//            for (int i = 12; i <= 22; i++){
+//                objects.get(i).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//                objects.get(i).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//                objects.get(i).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            }
+//            objects.get(25).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(25).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objects.get(25).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
+//            objects.get(26).translateObject(tempp.get(0)*-1,tempp.get(1)*-1,tempp.get(2)*-1);
+//            objects.get(26).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objects.get(26).translateObject(tempp.get(0)*1,tempp.get(1)*1,tempp.get(2)*1);
             //Brown
             //kepala
             List<Float> temppB = new ArrayList<>(objectsBrown.get(0).getCenterPoint());
@@ -2708,32 +2894,32 @@ public class Main {
 
             //Sally
             //kepala
-            List<Float> temp0S = new ArrayList<>(objectsSally.get(0).getCenterPoint());
-            objectsSally.get(0).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(0).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objectsSally.get(0).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
-            //mata kiri
-            objectsSally.get(6).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(6).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objectsSally.get(6).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
-            //mata kanan
-            objectsSally.get(7).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(7).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objectsSally.get(7).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
-            //mulut atas
-            objectsSally.get(8).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(8).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objectsSally.get(8).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
-            //mulut bawah
-            objectsSally.get(9).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
-            objectsSally.get(9).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
-            objectsSally.get(9).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            List<Float> temp0S = new ArrayList<>(objectsSally.get(0).getCenterPoint());
+//            objectsSally.get(0).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(0).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objectsSally.get(0).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            //mata kiri
+//            objectsSally.get(6).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(6).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objectsSally.get(6).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            //mata kanan
+//            objectsSally.get(7).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(7).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objectsSally.get(7).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            //mulut atas
+//            objectsSally.get(8).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(8).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objectsSally.get(8).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
+//            //mulut bawah
+//            objectsSally.get(9).translateObject(temp0S.get(0)*-1,temp0S.get(1)*-1,temp0S.get(2)*-1);
+//            objectsSally.get(9).rotateObject((float)Math.toRadians(gantiArah*(-degree)), 0f, 1f,0f);
+//            objectsSally.get(9).translateObject(temp0S.get(0)*1,temp0S.get(1)*1,temp0S.get(2)*1);
 
             for (Object object : objects) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
             }
             for (Object object : objectsCony) {
-                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
+                object.rotateObject((float) Math.toRadians(ybadanCony), 0f, 1f, 0f);
             }
             for (Object object : objectsBrown) {
                 object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
@@ -2764,6 +2950,14 @@ public class Main {
                 object.rotateObjectOnPoint(0.6f, 0f, 1f, 0f, objectsSally.get(0).getCpx(), objectsSally.get(0).getCpy(), objectsSally.get(0).getCpz());
             }
         }
+        if(window.isKeyPressed(GLFW_KEY_R)){
+            setYbadanCony(-0.6f);
+            for (Object object : objectsCony) {
+//                object.rotateObject((float) Math.toRadians(ybadan), 0f, 1f, 0f);
+                object.rotateObjectOnPoint(0.6f, 0f, 1f, 0f, objectsCony.get(0).getCpx(), objectsCony.get(0).getCpy(), objectsCony.get(0).getCpz());
+            }
+            countDegreeFacing = 0;
+        }
 
         if(mouseInput.isLeftButtonPressed()){
             Vector2f pos = mouseInput.getCurrentPos();
@@ -2775,6 +2969,13 @@ public class Main {
             if((!(pos.x > 1 || pos.x < -0.97) && !(pos.y > 0.97 || pos.y < -1))){
                 System.out.println("x : "+pos.x+" y : "+pos.y);
             }
+        }
+        if(window.isKeyPressed(GLFW_KEY_1)){
+            babify = true;
+        }
+
+        if(window.isKeyPressed(GLFW_KEY_0)){
+            babify = false;
         }
     }
 
@@ -2803,10 +3004,20 @@ public class Main {
 
             for(Object object: objectsBrown){
 //                object.draw(camera,projection);
-                object.draw();
-                for (Object childObject : object.getChildObject()) {
+                //obj 9 pacifer
+                if(object != objectsBrown.get(9)){
+                    object.draw();
+                    for (Object childObject : object.getChildObject()) {
 //                    childObject.draw(camera,projection);
-                    childObject.draw();
+                        childObject.draw();
+                    }
+                }
+                else if(((object == objectsBrown.get(8) && babify) || (object == objectsBrown.get(9)) && babify)){
+                    object.draw();
+                    for (Object childObject : object.getChildObject()) {
+//                    childObject.draw(camera,projection);
+                        childObject.draw();
+                    }
                 }
             }
 
@@ -2859,11 +3070,14 @@ public class Main {
         glfwSetErrorCallback(null).free();
     }
     public static void main(String[] args) {
-        new Main().run();
+        new Scene1().run();
     }
 
     public void setYbadan(float ybadan){
         this.ybadan += ybadan;
+    }
+    public void setYbadanCony(float ybadan){
+        this.ybadanCony += ybadan;
     }
     public void bezierMulut(float[][] floats, int pilihan) {
         int indexbezier = 0;

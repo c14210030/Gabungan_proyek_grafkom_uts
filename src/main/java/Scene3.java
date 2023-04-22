@@ -13,10 +13,10 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL30.*;
 
-public class Main {
+public class Scene3 {
     private Window window =
             new Window
-    (800,800,"Hello World");
+                    (800,800,"Hello World");
     private ArrayList<Object> objects
             = new ArrayList<>();
     private ArrayList<Object> objectsRectangle
@@ -2838,7 +2838,6 @@ public class Main {
                 object.drawLine();
             }
 
-
             // Restore state
             glDisableVertexAttribArray(0);
 
@@ -2859,7 +2858,7 @@ public class Main {
         glfwSetErrorCallback(null).free();
     }
     public static void main(String[] args) {
-        new Main().run();
+        new Scene3().run();
     }
 
     public void setYbadan(float ybadan){
