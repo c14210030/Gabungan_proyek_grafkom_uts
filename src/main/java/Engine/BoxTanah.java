@@ -6,11 +6,11 @@ import org.joml.Vector4f;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Box extends Circle{
+public class BoxTanah extends Circle{
     float radiusZ;
     int stackCount;
     int sectorCount;
-    public Box(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
+    public BoxTanah(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ,
                int sectorCount, int stackCount) {
         super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY);
         this.radiusZ = radiusZ;
@@ -24,51 +24,51 @@ public class Box extends Circle{
         Vector3f temp = new Vector3f();
         ArrayList<Vector3f> tempVertices = new ArrayList<>();
         //TITIK 1
-        temp.x = centerPoint.get(0) - radiusX / 2.0f;
-        temp.y = centerPoint.get(1) + radiusY / 2.0f;
-        temp.z = centerPoint.get(2) - radiusZ / 2.0f;
+        temp.x = centerPoint.get(0) - radiusX ;
+        temp.y = centerPoint.get(1) + radiusY ;
+        temp.z = centerPoint.get(2) - radiusZ ;
         tempVertices.add(temp);
         temp = new Vector3f();
         //TITIK 2
-        temp.x = centerPoint.get(0) + radiusX / 2.0f;
-        temp.y = centerPoint.get(1) + radiusY / 2.0f;
-        temp.z = centerPoint.get(2) - radiusZ / 2.0f;
+        temp.x = centerPoint.get(0) + radiusX ;
+        temp.y = centerPoint.get(1) + radiusY ;
+        temp.z = centerPoint.get(2) - radiusZ ;
         tempVertices.add(temp);
         temp = new Vector3f();
         //TITIK 3
-        temp.x = centerPoint.get(0) + radiusX / 2.0f;
-        temp.y = centerPoint.get(1) - radiusY / 2.0f;
-        temp.z = centerPoint.get(2) - radiusZ / 2.0f;
+        temp.x = centerPoint.get(0) + radiusX ;
+        temp.y = centerPoint.get(1) - radiusY ;
+        temp.z = centerPoint.get(2) - radiusZ ;
         tempVertices.add(temp);
         temp = new Vector3f();
         //TITIK 4
-        temp.x = centerPoint.get(0) - radiusX / 2.0f;
-        temp.y = centerPoint.get(1) - radiusY / 2.0f;
-        temp.z = centerPoint.get(2) - radiusZ / 2.0f;
+        temp.x = centerPoint.get(0) - radiusX ;
+        temp.y = centerPoint.get(1) - radiusY ;
+        temp.z = centerPoint.get(2) - radiusZ ;
         tempVertices.add(temp);
         temp = new Vector3f();
         //TITIK 5
-        temp.x = centerPoint.get(0) - radiusX / 2.0f;
-        temp.y = centerPoint.get(1) + radiusY / 2.0f;
-        temp.z = centerPoint.get(2) + radiusZ / 2.0f;
+        temp.x = centerPoint.get(0) - radiusX ;
+        temp.y = centerPoint.get(1) + radiusY ;
+        temp.z = centerPoint.get(2) + radiusZ ;
         tempVertices.add(temp);
         temp = new Vector3f();
         //TITIK 6
-        temp.x = centerPoint.get(0) + radiusX / 2.0f;
-        temp.y = centerPoint.get(1) + radiusY / 2.0f;
-        temp.z = centerPoint.get(2) + radiusZ / 2.0f;
+        temp.x = centerPoint.get(0) + radiusX ;
+        temp.y = centerPoint.get(1) + radiusY ;
+        temp.z = centerPoint.get(2) + radiusZ ;
         tempVertices.add(temp);
         temp = new Vector3f();
         //TITIK 7
-        temp.x = centerPoint.get(0) + radiusX / 2.0f;
-        temp.y = centerPoint.get(1) - radiusY / 2.0f;
-        temp.z = centerPoint.get(2) + radiusZ / 2.0f;
+        temp.x = centerPoint.get(0) + radiusX ;
+        temp.y = centerPoint.get(1) - radiusY ;
+        temp.z = centerPoint.get(2) + radiusZ ;
         tempVertices.add(temp);
         temp = new Vector3f();
         //TITIK 8
-        temp.x = centerPoint.get(0) - radiusX / 2.0f;
-        temp.y = centerPoint.get(1) - radiusY / 2.0f;
-        temp.z = centerPoint.get(2) + radiusZ / 2.0f;
+        temp.x = centerPoint.get(0) - radiusX ;
+        temp.y = centerPoint.get(1) - radiusY ;
+        temp.z = centerPoint.get(2) + radiusZ ;
         tempVertices.add(temp);
         temp = new Vector3f();
 
