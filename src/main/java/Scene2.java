@@ -1484,12 +1484,12 @@ public class Scene2 {
                 new ArrayList<>(),
                 new Vector4f(0.0f, 0.0f, 0.0f, 0.0f)
         ));
-//        //Alis kiri
-//        bezierMulut(controlbezier4, 6);
-//        objectsSally.get(0).getChildObject().add(bezier7.get(0));
-//        //Alis kanan
-//        bezierMulut(controlbezier5, 7);
-//        objectsSally.get(0).getChildObject().add(bezier8.get(0));
+        //Alis kiri
+        bezierMulut(controlbezier4, 6);
+        objectsSally.get(0).getChildObject().add(bezier7.get(0));
+        //Alis kanan
+        bezierMulut(controlbezier5, 7);
+        objectsSally.get(0).getChildObject().add(bezier8.get(0));
         //Brown
 //        //kepala (parent)
 //        objectsBrown.add(new EllipsoidBrown(
@@ -3171,19 +3171,10 @@ public class Scene2 {
         }
         if (window.isKeyPressed(GLFW_KEY_1)) {
             sadify = true;
-            //Alis kiri
-            bezierMulut(controlbezier4, 6);
-            objectsSally.get(0).getChildObject().add(bezier7.get(0));
-            //Alis kanan
-            bezierMulut(controlbezier5, 7);
-            objectsSally.get(0).getChildObject().add(bezier8.get(0));
-
         }
 
         if (window.isKeyPressed(GLFW_KEY_0)) {
             sadify = false;
-            objectsSally.get(0).getChildObject().remove(0);
-            objectsSally.get(0).getChildObject().remove(1);
         }
     }
 
@@ -3207,7 +3198,23 @@ public class Scene2 {
             }
 
             for (Object object : objectsSally) {
-                object.draw();
+                if (sadify) {
+                    System.out.println("sadify: " + sadify);
+                    object.draw();
+                    for (Object object7 : bezier7) {
+                        object7.drawLine();
+                    }
+                    for (Object object8 : bezier8) {
+                        object8.drawLine();
+                    }
+                }
+//                else if (object == objectsSally.get(0)) {
+//                    System.out.println("ini kepala");
+//                    object.drawWithoutChild();
+//                }
+                else {
+                    object.draw();
+                }
             }
 
             for (Object object : objectsBrown) {
@@ -3249,12 +3256,7 @@ public class Scene2 {
             for (Object object : bezier6) {
                 object.drawLine();
             }
-            for (Object object : bezier7) {
-                object.drawLine();
-            }
-            for (Object object : bezier8) {
-                object.drawLine();
-            }
+
 
             danau.draw();
             tanah.draw();

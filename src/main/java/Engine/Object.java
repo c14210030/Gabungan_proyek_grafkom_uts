@@ -172,6 +172,24 @@ public class Object extends ShaderProgram{
             child.draw();
         }
     }
+
+    public void drawWithoutChild(){
+        drawSetup();
+        // Draw the vertices
+        //optional
+        glLineWidth(10); //ketebalan garis
+        glPointSize(10); //besar kecil vertex
+        //wajib
+        //GL_LINES
+        //GL_LINE_STRIP
+        //GL_LINE_LOOP
+        //GL_TRIANGLES
+        //GL_TRIANGLE_FAN
+        //GL_POINT
+        glDrawArrays(GL_POLYGON,
+                0,
+                vertices.size());
+    }
     public void drawWithVerticesColor(){
         drawSetupWithVerticesColor();
         // Draw the vertices
