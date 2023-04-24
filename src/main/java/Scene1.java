@@ -1836,7 +1836,7 @@ public class Scene1 {
                 new Vector4f(1f, 1f, 1f, 1.0f),
                 Arrays.asList(0.0f, 0.0f, 0.0f),
                 0.034f,
-                0.034f,
+                0.036f,
                 0.035f,
                 36,
                 18
@@ -3020,17 +3020,33 @@ public class Scene1 {
                 object.draw();
             }
 
-            for(Object object: objectsBrown){
-//                object.draw(camera,projection);
-                //obj 9 pacifer
-                if(object != objectsBrown.get(9)){
+            for (Object object : objectsBrown) {
+                if(babify) {
+                    System.out.println("babify");
                     object.draw();
                     for (Object childObject : object.getChildObject()) {
 //                    childObject.draw(camera,projection);
                         childObject.draw();
                     }
+                    for (Object object5 : bezier5) {
+                        object5.drawLine();
+                    }
+                    for (Object object6 : bezier6) {
+                        object6.drawLine();
+                    }
                 }
-                else if(((object == objectsBrown.get(8) && babify) || (object == objectsBrown.get(9)) && babify)){
+                // celana dalam
+                else if(object == objectsBrown.get(8)){
+                    System.out.println("celana dalam");
+                    continue;
+                }
+                //obj 9 pacifer
+                else if(object == objectsBrown.get(9)){
+                    System.out.println("pacifier");
+                    continue;
+                }
+                else {
+                    System.out.println("blm babify");
                     object.draw();
                     for (Object childObject : object.getChildObject()) {
 //                    childObject.draw(camera,projection);
