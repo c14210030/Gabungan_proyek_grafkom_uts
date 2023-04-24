@@ -27,6 +27,7 @@ public class Scene1 {
 
     private MouseInput mouseInput;
     int countDegree = 0;
+    Object tanah;
     float counterDegreeKaki = 30f;
     float counterDegreeKepala = 10f;
     float countDegreeFacing=0f;
@@ -2140,6 +2141,22 @@ public class Scene1 {
         ));
         tanamanKecil.get(1).getChildObject().get(0).translateObject(-0.5f, 0.2f,0.3f);
 
+        tanah = new BoxTanah(
+                Arrays.asList(
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.vert", GL_VERTEX_SHADER),
+                        new ShaderProgram.ShaderModuleData("resources/shaders/scene.frag", GL_FRAGMENT_SHADER)
+                ),
+                new ArrayList<>(),
+                new Vector4f(0.535f, 0.706f, 0.341f, 1.0f),
+                Arrays.asList(0.0f, 0.0f, 0.0f),
+                1f,
+                1f,
+                0.1f,
+                36,
+                18
+        );
+        tanah.translateObject(0f, -1f, 0.4f);
+
         //pindah posisi karakter
 //        for (Object object : objects){
 //            object.translateObject(-1.5f,-0.14f,0f);
@@ -2987,6 +3004,7 @@ public class Scene1 {
             input();
 
             //code
+            tanah.draw();
             for (Object object: tanamanKecil){
                 object.draw();
             }

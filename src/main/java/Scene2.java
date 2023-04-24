@@ -3199,7 +3199,6 @@ public class Scene2 {
 
             for (Object object : objectsSally) {
                 if (sadify) {
-                    System.out.println("sadify: " + sadify);
                     object.draw();
                     for (Object object7 : bezier7) {
                         object7.drawLine();
